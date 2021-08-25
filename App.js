@@ -1,9 +1,17 @@
 
 import React from 'react';
-import { StyleSheet, Text, View,ScrollView,Image,  Button, Alert,ActivityIndicator  } from 'react-native';
+import { useState } from 'react'
+import { StyleSheet, Text, View,ScrollView,Image,  Button, Alert,ActivityIndicator,} from 'react-native';
 import image from "./assets/konexio-logo_1.png"
 export default function App() {
+  const [showLoading, setShowloading] = useState(false)
 
+  function onPressButton() {
+    console.log("hello");
+    Alert.alert("You clicked me")
+
+    setShowLoading(true)
+  }
   return (
     <ScrollView style={styles.container}>
       <View style={styles.Text}>
@@ -17,9 +25,11 @@ export default function App() {
         হ্যালো !
       </Text>
       <Image source={{uri:"https://www.konexio.eu/uploads/1/2/0/2/120245745/konexio-logo_1.png"}} style={styles.image} />
-      <Image source={image} style={styles.image}onPress={() => {Alert.alert('You clicked!');}}/>
-      <Button onPress={() => {Alert.alert('You clicked!');}} title="click" />
-      <ActivityIndicator/>
+      <Image source={image} style={styles.image}/>
+      <Button onPress={() => {Alert.alert('You clicked!')}} title="click" />
+      <Button style={styles.button} onPress={() => { alert('click again'); setShowloading(true)}} title="Clique Me" />
+        {showLoading && <ActivityIndicator size="small" color="#0000ff" />}
+
       </View>
       
     </ScrollView>
@@ -55,6 +65,7 @@ const styles = StyleSheet.create({
     margin: 'auto'
   },
 
+  
 });
 
 
